@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "hello-prisma",
+  "author": "n5sgg",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "engines": {
+      "pnpm": ">=8"
+  },
+  "packageManager": "pnpm@8.5.0",
+  "scripts": {
+    "init": "npx prisma migrate dev --name init"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.1.4",
+    "prisma": "^4.14.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@prisma/client": "4.14.0"
+  }
+}

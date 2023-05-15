@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "mydb"
+      MYSQL_USER: "johndoe"
+      MYSQL_PASSWORD: "randompassword"
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - prisma-nw
+
+  adminer:
+    depends_on:
+      - db
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - prisma-nw
+
+volumes:
+  db:
+
+networks:
+  prisma-nw:
+    driver: bridge
